@@ -27,7 +27,7 @@ public interface Dao_node {
 
     //show all the nodes
     @Query("SELECT * FROM data ORDER BY priority DESC")
-    LiveData<List<Entity_node>> getallnoted();
+    LiveData<List<Entity_node>> getallnodes();
 
 
 }

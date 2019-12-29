@@ -9,14 +9,14 @@ public class Entity_node {
 
     //primary key
     @PrimaryKey(autoGenerate = true)
-    private Integer id;
+    private int id;
 
     private String title;
     private String detail;
-    private Integer priority;
+    private int priority;
 
     //constructor
-    public Entity_node(String title, String detail, Integer priority) {
+    public Entity_node(String title, String detail, int priority) {
         this.title = title;
         this.detail = detail;
         this.priority = priority;
@@ -28,7 +28,7 @@ public class Entity_node {
     }
 
     //getters
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -40,7 +40,7 @@ public class Entity_node {
         return detail;
     }
 
-    public Integer getPriority() {
+    public int getPriority() {
         return priority;
     }
 }
