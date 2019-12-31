@@ -19,9 +19,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Node_ViewHolder> {
 
 
 
-    public void  setNodes( List<Entity_node> list){
-        this.list=list;
-    }
+
 
     @NonNull
     @Override
@@ -38,7 +36,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Node_ViewHolder> {
         Entity_node node = list.get(position);
         holder.title.setText(node.getTitle());
         holder.description.setText(node.getDetail());
-        holder.priority.setText(node.getPriority());
+        holder.priority.setText(String.valueOf(node.getPriority()));
 
 
     }
@@ -46,6 +44,19 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Node_ViewHolder> {
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    public void  setNodes( List<Entity_node> list){
+        this.list=list;
+        notifyDataSetChanged();
+    }
+
+
+
+    //function to delete node
+    public Entity_node getNodeAt(int position){
+
+        return list.get(position);
     }
 
     public class Node_ViewHolder extends RecyclerView.ViewHolder {
