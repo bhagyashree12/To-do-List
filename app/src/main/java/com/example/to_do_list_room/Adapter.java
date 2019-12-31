@@ -16,10 +16,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Node_ViewHolder> {
 
 
     List<Entity_node> list = new ArrayList<>();
-
-
-
-
+    public ItemClickListener listner;
 
     @NonNull
     @Override
@@ -46,15 +43,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Node_ViewHolder> {
         return list.size();
     }
 
-    public void  setNodes( List<Entity_node> list){
-        this.list=list;
+    public void setNodes(List<Entity_node> list) {
+        this.list = list;
         notifyDataSetChanged();
     }
 
 
-
     //function to delete node
-    public Entity_node getNodeAt(int position){
+    public Entity_node getNodeAt(int position) {
 
         return list.get(position);
     }
@@ -74,8 +70,26 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Node_ViewHolder> {
             button = itemView.findViewById(R.id.button);
             priority = itemView.findViewById(R.id.priority);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (listner != null && position != RecyclerView.NO_POSITION) {
+                        listner.OnItemClick(list.get(position));
+                    }
+                }
+            });
+
+
         }
     }
 
+    public interface ItemClickListener {
+        void OnItemClick(Entity_node node);
+    }
+
+    public void setOnClick(ItemClickListener listner) {
+        this.listner = listner;
+    }
 
 }

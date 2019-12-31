@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+
+
 public class Detailed_class extends AppCompatActivity {
     private EditText title;
     private EditText description;
@@ -21,6 +23,7 @@ public class Detailed_class extends AppCompatActivity {
     public static final String EXTRA_TITLE = "com.example.to_do_list_room.TITLE";
     public static final String EXTRA_DESCRIPTION = "com.example.to_do_list_room.DESCRIPTION";
     public static final String EXTRA_PRIORITY = "com.example.to_do_list_room.PRIORITY";
+    public static final String EXTRA_ID = "com.example.to_do_list_room.ID";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,6 +36,19 @@ public class Detailed_class extends AppCompatActivity {
         priority = findViewById(R.id.priority);
         priority.setMaxValue(10);
         priority.setMinValue(0);
+
+
+        Intent intent = getIntent();
+
+        if (intent.hasExtra(EXTRA_ID)) {
+            setTitle("Edit Note");
+            title.setText(intent.getStringExtra(EXTRA_TITLE));
+            description.setText(intent.getStringExtra(EXTRA_DESCRIPTION));
+            priority.setValue(intent.getIntExtra(EXTRA_PRIORITY, 1));
+        } else {
+            setTitle("Add Note");
+        }
+
 
     }
 
@@ -79,8 +95,17 @@ public class Detailed_class extends AppCompatActivity {
         intent.putExtra(EXTRA_DESCRIPTION, detail_node);
         intent.putExtra(EXTRA_PRIORITY, priority_node);
 
+        //for update
+        int id =getIntent().getIntExtra(EXTRA_ID,-1);
+        if(id!=-1){
+
+            intent.putExtra(EXTRA_ID, id);
+
+        }
+
+
         //if intent not mentioned it will give nullpointerexception
-        setResult(RESULT_OK,intent);
+        setResult(RESULT_OK, intent);
         finish();
 
         //override onactivity result in mainactivity to get this data
