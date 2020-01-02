@@ -1,5 +1,6 @@
 package com.example.to_do_list_room;
 
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,6 +81,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Node_ViewHolder> {
                 }
             });
 
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    title.setPaintFlags(title.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                    description.setText("");
+                }
+            });
 
         }
     }

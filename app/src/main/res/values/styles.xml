@@ -6,6 +6,37 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="toolbarStyle">@style/Widget.Toolbar</item>
+
     </style>
+
+
+    <!--change the color of action bar(gradient color)-->
+    <style name="Widget.Toolbar" parent="@style/Widget.AppCompat.Toolbar">
+        <item name="android:background">@drawable/gradient_action_bar</item>
+
+    </style>
+
+    <!--change the style  of action bar text-->
+    <style name="TextAppearance.AppCompat.Widget.ActionBar.Title" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">serif</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!--change the style  of heading (title) text-->
+    <style name="heading">
+        <item name="android:fontFamily">serif</item>
+        <item name="android:textSize">25dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!--change the style  of description text -->
+    <style name="description">
+        <item name="android:fontFamily">serif</item>
+        <item name="android:textSize">20dp</item>
+
+    </style>
+
 
 </resources>

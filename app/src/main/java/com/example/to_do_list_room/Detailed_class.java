@@ -41,12 +41,12 @@ public class Detailed_class extends AppCompatActivity {
         Intent intent = getIntent();
 
         if (intent.hasExtra(EXTRA_ID)) {
-            setTitle("Edit Note");
+            setTitle("Edit Task");
             title.setText(intent.getStringExtra(EXTRA_TITLE));
             description.setText(intent.getStringExtra(EXTRA_DESCRIPTION));
             priority.setValue(intent.getIntExtra(EXTRA_PRIORITY, 1));
         } else {
-            setTitle("Add Note");
+            setTitle("Add Task");
         }
 
 
@@ -85,7 +85,7 @@ public class Detailed_class extends AppCompatActivity {
 
         //if no information is provided
         if (title_node.trim().isEmpty() || detail_node.trim().isEmpty()) {
-            Toast.makeText(this, "PLease enter some data", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter some data", Toast.LENGTH_SHORT).show();
             return;
         }
 

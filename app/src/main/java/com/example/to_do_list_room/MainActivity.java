@@ -2,6 +2,9 @@ package com.example.to_do_list_room;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -65,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             public void onChanged(@Nullable List<Entity_node> notes) {
                 //update RecyclerView
                 adapter.setNodes(notes);
-                Toast.makeText(MainActivity.this, "hello world", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, "hello world", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -81,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
 
                 view_model.delete(adapter.getNodeAt(viewHolder.getAdapterPosition()));
-                Toast.makeText(MainActivity.this, "deledted", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, "deledted", Toast.LENGTH_SHORT).show();
 
             }
         }).attachToRecyclerView(recyclerView);
@@ -118,12 +121,12 @@ public class MainActivity extends AppCompatActivity {
             view_model.insert(node);
 
 
-            Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Task saved", Toast.LENGTH_SHORT).show();
         } else if (requestCode == EDIT_NOTE_REQUEST && resultCode == RESULT_OK) {
 
-            int id=data.getIntExtra(EXTRA_ID,-1);
-            if(id==-1){
-                Toast.makeText(this, "not be added", Toast.LENGTH_SHORT).show();
+            int id = data.getIntExtra(EXTRA_ID, -1);
+            if (id == -1) {
+                Toast.makeText(this, "Task not saved", Toast.LENGTH_SHORT).show();
                 return;
             }
             String title = data.getStringExtra(EXTRA_TITLE);
@@ -133,11 +136,37 @@ public class MainActivity extends AppCompatActivity {
             Entity_node node = new Entity_node(title, description, priority);
             node.setId(id);
             view_model.update(node);
-            Toast.makeText(this, "Note updated", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Task Updated", Toast.LENGTH_SHORT).show();
 
         } else {
-            Toast.makeText(this, "Note not saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Task cannot be updated", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    //creating menu on the mainactivity
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.delete_all, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case (R.id.delete_all_node):
+                delete_all_nodes();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+
+    }
+
+    public void delete_all_nodes(){
+        view_model.deleteAllNotes();
     }
 }

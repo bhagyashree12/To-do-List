@@ -2,5 +2,9 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#CE93D8</color>
+    <drawable name="actionbar">@drawable/gradient_action_bar</drawable>
+    <color name="button">#F3E5F5</color>
+
+
 </resources>
